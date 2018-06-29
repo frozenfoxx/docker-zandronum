@@ -4,10 +4,11 @@ A Docker container that runs Zandronum.
 Docker Hub: [https://hub.docker.com/r/frozenfoxx/zandronum/](https://hub.docker.com/r/frozenfoxx/zandronum/)
 
 # How to Build
+
 ```
 git clone git@github.com:frozenfoxx/docker-zandronum.git
 cd docker-zandronum
-docker build .
+docker build -t frozenfoxx/zandronum:latest .
 ```
 
 # How to Use this Image
