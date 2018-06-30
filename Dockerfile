@@ -6,6 +6,7 @@ LABEL maintainer="FrozenFOXX <frozenfoxx@churchoffoxx.net>"
 
 # Variables
 ENV HOME=/root \
+      APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn \
       DEBIAN_FRONTEND=noninteractive \
       DISPLAY=:0.0 \
       DISPLAY_WIDTH=1366 \
@@ -22,8 +23,12 @@ RUN apt update && \
       bash \
       fluxbox \
       git \
+      gnupg \
+      libglu1-mesa \
+      libgtk2.0 \
       net-tools \
       socat \
+      software-properties-common \
       supervisor \
       wget \
       x11vnc \
