@@ -25,6 +25,7 @@ RUN apt update && \
       net-tools \
       socat \
       supervisor \
+      wget \
       x11vnc \
       xterm \
       xvfb && \
@@ -38,6 +39,10 @@ COPY conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Modify the launch script 'ps -p'
 RUN sed -i -- "s/ps -p/ps -o pid | grep/g" /root/noVNC/utils/launch.sh
+
+# Set up Zandronum
+COPY scripts/* /tmp/
+RUN /tmp/install_zandronum.sh
 
 # Expose ports
 EXPOSE 8080
