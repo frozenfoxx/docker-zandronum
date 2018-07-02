@@ -9,8 +9,8 @@ ENV HOME=/root \
       APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn \
       DEBIAN_FRONTEND=noninteractive \
       DISPLAY=:0.0 \
-      DISPLAY_WIDTH=1366 \
-      DISPLAY_HEIGHT=768 \
+      DISPLAY_WIDTH=1920 \
+      DISPLAY_HEIGHT=1080 \
       DOOMWADDIR='/wads' \
       FILES='' \
       LANG=en_US.UTF-8 \
@@ -32,9 +32,7 @@ RUN apt update && \
       supervisor \
       wget \
       x11vnc \
-      xterm \
-      xvfb && \
-    rm -rf /var/lib/apt/lists/*
+      xvfb
 
 # Clone noVNC from github
 RUN git clone https://github.com/novnc/noVNC.git /root/noVNC
@@ -46,11 +44,19 @@ COPY conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN sed -i -- "s/ps -p/ps -o pid | grep/g" /root/noVNC/utils/launch.sh
 
 # Set up Zandronum
+RUN mkdir -p /root/.config/zandronum
+COPY conf/zandronum.ini /root/.config/zandronum/
 COPY scripts/* /tmp/
 RUN /tmp/install_zandronum.sh
+
+# Clean up apt
+RUN rm -rf /var/lib/apt/lists/*
+
+# Set up entrypoint
+COPY bin/entrypoint.sh /usr/local/bin/entrypoint.sh
 
 # Expose ports
 EXPOSE 8080
 
-# Launch supervisor
-CMD ["/usr/bin/supervisord"]
+# Launch processes
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
