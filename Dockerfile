@@ -21,7 +21,6 @@ ENV HOME=/root \
 RUN apt update && \
     apt install -y \
       bash \
-      fluxbox \
       git \
       gnupg \
       libglu1-mesa \
