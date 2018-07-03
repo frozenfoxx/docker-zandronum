@@ -8,7 +8,7 @@ Docker Hub: [https://hub.docker.com/r/frozenfoxx/zandronum/](https://hub.docker.
 To just build the default image, input the following:
 
 ```
-git clone git@github.com:frozenfoxx/docker-zandronum.git
+git clone git@gitlab.com:frozenfoxx/docker-zandronum.git
 cd docker-zandronum
 docker build -t frozenfoxx/zandronum:latest .
 ```
