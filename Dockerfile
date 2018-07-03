@@ -18,8 +18,9 @@ ENV HOME=/root \
       LC_ALL=C.UTF-8
 
 # Install packages
-RUN apt update && \
-    apt install -y \
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y \
       bash \
       git \
       gnupg \
@@ -33,8 +34,9 @@ RUN apt update && \
       x11vnc \
       xvfb
 
-# Clone noVNC from github
-RUN git clone https://github.com/novnc/noVNC.git /root/noVNC
+# Set up noVNC
+RUN git clone https://github.com/novnc/noVNC.git /root/noVNC && \
+  ln -s /root/noVNC/vnc_lite.html /root/noVNC/index.html
 
 # Set up supervisor
 COPY conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
