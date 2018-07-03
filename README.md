@@ -17,10 +17,11 @@ If you wish to build an alternate image, copy the alternate Dockerfile with the 
 
 # How to Use this Image
 ## Quickstart
+
 The following will run the latest Zandronum client with a default configuration.
 
 ```
-docker run -d --rm -p 8080:8080 --name=zandronum frozenfoxx/zandronum:latest
+docker run -it --rm -p 8080:8080 -v /Path/To/WADs/:/wads --name=zandronum frozenfoxx/zandronum:latest
 ```
 
 Then open `http://localhost:8080` in your browser.
