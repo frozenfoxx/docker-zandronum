@@ -5,16 +5,22 @@ Docker Hub: [https://hub.docker.com/r/frozenfoxx/zandronum/](https://hub.docker.
 
 # How to Build
 
+To just build the default image, input the following:
+
 ```
 git clone git@github.com:frozenfoxx/docker-zandronum.git
 cd docker-zandronum
 docker build -t frozenfoxx/zandronum:latest .
 ```
 
+If you wish to build an alternate image, copy the alternate Dockerfile with the paramters to you wish to use to `Dockerfile` and issue the build command.
+
 # How to Use this Image
 ## Quickstart
 The following will run the latest Zandronum client with a default configuration.
 
 ```
-docker run -d --rm -p 8080:80 --name=zandronum frozenfoxx/zandronum:latest
+docker run -d --rm -p 8080:8080 --name=zandronum frozenfoxx/zandronum:latest
 ```
+
+Then open `http://localhost:8080` in your browser.
