@@ -58,6 +58,7 @@ COPY bin/entrypoint.sh /usr/local/bin/entrypoint.sh
 
 # Clean up unnecessary packages
 RUN apt-get autoremove --purge -y \
+  git \
   gnupg \
   wget
 
