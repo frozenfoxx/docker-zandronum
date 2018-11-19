@@ -50,9 +50,6 @@ COPY conf/zandronum.ini /root/.config/zandronum/
 COPY scripts/* /tmp/
 RUN /tmp/install_zandronum.sh
 
-# Clean up apt
-RUN rm -rf /var/lib/apt/lists/*
-
 # Set up entrypoint
 COPY bin/entrypoint.sh /usr/local/bin/entrypoint.sh
 
