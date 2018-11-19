@@ -56,6 +56,13 @@ RUN rm -rf /var/lib/apt/lists/*
 # Set up entrypoint
 COPY bin/entrypoint.sh /usr/local/bin/entrypoint.sh
 
+# Clean up unnecessary packages
+RUN apt-get autoremove --purge -y \
+  gnupg \
+  wget
+
+RUN rm -rf /var/lib/apt/lists/*
+  
 # Expose ports
 EXPOSE 8080
 
