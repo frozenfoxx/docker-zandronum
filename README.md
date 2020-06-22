@@ -24,7 +24,7 @@ The following will run the latest Zandronum client with a default configuration.
 docker run -it \
   --rm \
   -p 8080:8080 \
-  -v /Path/To/WADs/:/wads \
+  -v /Path/To/WADs/:/wads:ro \
   --name=zandronum \
   frozenfoxx/zandronum:latest
 ```
@@ -39,8 +39,8 @@ The entrypoint will pass all additional options to the Zandronum executable. To 
 docker run -it \
   --rm \
   -p 8080:8080 \
-  -v /Path/To/WADs/:/wads \
-  -v /Path/To/Other/WADs:/tmp/other_wads \
+  -v /Path/To/WADs/:/wads:ro \
+  -v /Path/To/Other/WADs:/tmp/other_wads:ro \
   --name=zandronum \
   frozenfoxx/zandronum:latest \
   /tmp/other_wads/savage.wad \
