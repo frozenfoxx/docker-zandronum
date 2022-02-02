@@ -1,5 +1,5 @@
 # Base image
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 # Information
 LABEL maintainer="FrozenFOXX <frozenfoxx@churchoffoxx.net>"
@@ -42,7 +42,7 @@ RUN git clone https://github.com/novnc/noVNC.git /root/noVNC && \
 COPY conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Modify the launch script 'ps -p'
-RUN sed -i -- "s/ps -p/ps -o pid | grep/g" /root/noVNC/utils/launch.sh
+RUN sed -i -- "s/ps -p/ps -o pid | grep/g" /root/noVNC/utils/novnc_proxy
 
 # Set up Zandronum
 RUN mkdir -p /root/.config/zandronum
