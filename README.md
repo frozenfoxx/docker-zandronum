@@ -1,6 +1,6 @@
 # docker-zandronum
 
-[![Build Status](https://cloud.drone.io/api/badges/frozenfoxx/docker-zandronum/status.svg?ref=refs/heads/main)](https://cloud.drone.io/frozenfoxx/docker-zandronum)
+[![Actions Status](https://github.com/frozenfoxx/docker-zandronum/workflows/build/badge.svg)](https://github.com/frozenfoxx/docker-zandronum/actions)
 
 A [Docker](https://www.docker.com/) container that runs [Zandronum](https://zandronum.com/).
 
