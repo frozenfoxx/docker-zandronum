@@ -1,5 +1,5 @@
 # Base image
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 # Information
 LABEL maintainer="FrozenFOXX <frozenfoxx@churchoffoxx.net>"
@@ -45,9 +45,11 @@ COPY conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN sed -i -- "s/ps -p/ps -o pid | grep/g" /root/noVNC/utils/novnc_proxy
 
 # Set up Zandronum
-RUN mkdir -p /root/.config/zandronum
+RUN mkdir -p /root/.config/zandronum && \
+  mkdir -p ${DOOMWADDIR}
 COPY conf/zandronum.ini /root/.config/zandronum/
 COPY scripts/* /tmp/
+COPY wads/* ${DOOMWADDIR}/
 RUN /tmp/install_zandronum.sh
 
 # Set up entrypoint
