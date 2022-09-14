@@ -11,7 +11,7 @@ Docker Hub: [https://hub.docker.com/r/frozenfoxx/zandronum/](https://hub.docker.
 To just build the default image, input the following:
 
 ```
-clone git@github.com:frozenfoxx/docker-zandronum.git
+git clone https://github.com/frozenfoxx/docker-zandronum.git
 cd docker-zandronum
 docker build -t frozenfoxx/zandronum:latest .
 ```
@@ -32,7 +32,7 @@ docker run -it \
   frozenfoxx/zandronum:latest
 ```
 
-Then open `http://localhost:8080` in your browser.
+Then open [http://localhost:8080/vnc_lite.html](http://localhost:8080/vnc_lite.html) in your browser.
 
 ## Adding Options
 
@@ -66,3 +66,9 @@ The default control scheme has been modified for easier use with noVNC. Since th
 * Use: `E`
 * Jump: `Space`
 * Crouch: `Control`
+
+## Environment Variables
+
+* `DISPLAY_HEIGHT`: allows modification of the virtual display's height.
+* `DISPLAY_WIDTH`: allows modification of the virtual display's width.
+* `PORT`: allows modification of the listening port for noVNC.

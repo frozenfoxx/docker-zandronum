@@ -5,6 +5,7 @@ export DISPLAY_HEIGHT
 export DISPLAY_WIDTH
 export PORT
 
+envsubst < /root/.config/zandronum/zandronum.ini.tmpl > /root/.config/zandronum/zandronum.ini
 envsubst < /etc/supervisor/conf.d/supervisord.conf.tmpl > /etc/supervisor/conf.d/supervisord.conf
 
 # Run supervisor

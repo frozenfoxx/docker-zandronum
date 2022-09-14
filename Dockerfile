@@ -43,7 +43,7 @@ COPY conf/supervisord.conf.tmpl /etc/supervisor/conf.d/supervisord.conf.tmpl
 # Set up Zandronum
 RUN mkdir -p /root/.config/zandronum && \
   mkdir -p ${DOOMWADDIR}
-COPY conf/zandronum.ini /root/.config/zandronum/
+COPY conf/zandronum.ini.tmpl /root/.config/zandronum/
 COPY scripts/* /usr/local/bin/
 COPY wads/* ${DOOMWADDIR}/
 RUN /usr/local/bin/install_zandronum.sh
