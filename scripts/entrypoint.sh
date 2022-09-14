@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-# Build the config file
+# Build the config files
+export DISPLAY_HEIGHT
+export DISPLAY_WIDTH
+export PORT
+
 envsubst < /etc/supervisor/conf.d/supervisord.conf.tmpl > /etc/supervisor/conf.d/supervisord.conf
 
 # Run supervisor
