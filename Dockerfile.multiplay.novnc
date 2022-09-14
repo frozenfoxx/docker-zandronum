@@ -44,6 +44,7 @@ COPY conf/supervisord.conf.tmpl /etc/supervisor/conf.d/supervisord.conf.tmpl
 
 # Set up Zandronum
 RUN mkdir -p /home/mpukgame/.config/zandronum && \
+  chown -R mpukgame /home/mpukgame/.config && \
   mkdir -p ${DOOMWADDIR}
 COPY conf/zandronum.ini.tmpl /home/mpukgame/.config/zandronum/
 COPY scripts/* /usr/local/bin/
