@@ -39,13 +39,22 @@ jobs:
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/zandronum:latest
           cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/zandronum:buildcache
           cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/zandronum:buildcache,mode=max
-      - name: Build and push (novnc)
+      - name: Build and push (ubuntu-novnc)
         uses: docker/build-push-action@v2
         with:
           context: .
           file: ./Dockerfile.ubuntu.novnc
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/zandronum:novnc
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/zandronum:ubuntu-novnc
+          cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/zandronum:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/zandronum:buildcache,mode=max
+      - name: Build and push (multiplay-novnc)
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile.multiplay.novnc
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/zandronum:multiplay-novnc
           cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/zandronum:buildcache
           cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/zandronum:buildcache,mode=max
   
