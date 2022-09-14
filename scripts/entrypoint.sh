@@ -1,21 +1,57 @@
 #!/usr/bin/env bash
 
-# Build the config files
-export DISPLAY_HEIGHT
-export DISPLAY_WIDTH
-export PORT
+# Variables
+DISPLAY_HEIGHT=${DISPLAY_HEIGHT:-'1280'}
+DISPLAY_WIDTH=${DISPLAY_WIDTH:-'720'}
+PARAMS=''
+PORT=${PORT:-'8080'}
 
-envsubst < /root/.config/zandronum/zandronum.ini.tmpl > /root/.config/zandronum/zandronum.ini
-envsubst < /etc/supervisor/conf.d/supervisord.conf.tmpl > /etc/supervisor/conf.d/supervisord.conf
+# Functions
 
-# Run supervisor
-/usr/bin/supervisord -c /etc/supervisor/supervisord.conf &
+## Build config files
+build_configs()
+{
+  export DISPLAY_HEIGHT
+  export DISPLAY_WIDTH
+  export PORT
 
-# Wait until X11 is up
-until pids=$(pidof Xvfb)
-do   
-  sleep 1
+  envsubst < /root/.config/zandronum/zandronum.ini.tmpl > /root/.config/zandronum/zandronum.ini
+  envsubst < /etc/supervisor/conf.d/supervisord.conf.tmpl > /etc/supervisor/conf.d/supervisord.conf
+}
+
+## Run supervisor
+launch_supervisor()
+{
+  /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf &
+}
+
+## Launch Zandronum
+launch_zandronum()
+{
+  ## Wait until X11 is up
+  until pids=$(pidof Xvfb)
+  do   
+    sleep 1
+  done
+
+  ## Execute Zandronum
+  zandronum ${PARAMS}
+}
+
+# Logic
+
+## Check if PORT is overridden with vncport
+while [[ "$1" != "" ]]; do
+  case $1 in
+    --vncport ) shift
+                PORT=$1
+                ;;
+    * )         PARAMS="${PARAMS} $1"
+                ;;
+  esac
+  shift
 done
 
-# Execute Zandronum
-zandronum $@
+build_configs
+launch_supervisor
+launch_zandronum
