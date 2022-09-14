@@ -3,7 +3,6 @@
 # Install Zandronum
 
 # Variables
-
 DISTRO=${DISTRO:-'ubuntu'}
 REPO_KEY=${REPO_KEY:-'drdteam.gpg'}
 REPO_URL=${REPO_URL:-'http://debian.drdteam.org'}
@@ -27,7 +26,7 @@ add_repo()
 ## Add a Debian repository
 add_repo_debian()
 {
-  wget -O - ${REPO_URL}/${REPO_KEY} | apt-key add -
+  wget -qO- ${REPO_URL}/${REPO_KEY} | sudo tee /etc/apt/trusted.gpg.d/${REPO_KEY} 2>&1 >/dev/null
   apt-add-repository "deb ${REPO_URL}/ stable multiverse"
 }
 
