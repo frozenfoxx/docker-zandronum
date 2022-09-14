@@ -38,7 +38,7 @@ RUN apt-get update && \
     apt-get install -y ${APP_DEPS} ${BUILD_DEPS}
 
 # Set up supervisor
-COPY conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY conf/supervisord.conf.tmpl /etc/supervisor/conf.d/supervisord.conf.tmpl
 
 # Set up Zandronum
 RUN mkdir -p /root/.config/zandronum && \
