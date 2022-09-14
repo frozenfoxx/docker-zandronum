@@ -80,3 +80,6 @@ The default control scheme has been modified for easier use with noVNC. Since th
 * `DISPLAY_HEIGHT`: allows modification of the virtual display's height.
 * `DISPLAY_WIDTH`: allows modification of the virtual display's width.
 * `PORT`: allows modification of the listening port for noVNC.
+
+## Parameters
+* `--vncport [port]`: port to listen on, overrides `PORT`. 
