@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Build the config file
+envsubst < /etc/supervisor/conf.d/supervisord.conf.tmpl > /etc/supervisor/conf.d/supervisord.conf
+
 # Run supervisor
 /usr/bin/supervisord -c /etc/supervisor/supervisord.conf &
 

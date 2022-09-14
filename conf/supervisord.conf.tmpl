@@ -1,0 +1,22 @@
+[supervisord]
+nodaemon=true
+pidfile=/tmp/supervisord.pid
+logfile=/tmp/supervisord.log
+
+[program:Xvfb-zandronum]
+command=Xvfb :0 -screen 0 "${DISPLAY_WIDTH}"x"${DISPLAY_HEIGHT}"x24 -listen tcp -noreset
+priority=2
+stdout_logfile=/tmp/xvfb-zandronum.log
+redirect_stderr=true
+
+[program:x11vnc-zandronum]
+command=x11vnc -display :0 -rfbport 5900 -forever -shared
+priority=3
+stdout_logfile=/tmp/x11vnc-zandronum.log
+redirect_stderr=true
+
+[program:websockify_vnc]
+command=websockify --web /usr/share/novnc ${PORT} localhost:5900
+priority=4
+stdout_logfile=/tmp/websockify-vnc.log
+redirect_stderr=true
