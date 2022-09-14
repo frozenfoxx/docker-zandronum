@@ -50,6 +50,14 @@ docker run -it \
   +connect dm.zserver.net
 ```
 
+## Multiplay
+
+A [Multiplay](https://unity.com/products/multiplay) compatible version of this container is also available. For deployment to Multiplay, you will need to follow their Container [guildelines](https://docs.unity.com/multiplay/concepts/container-builds.html).
+
+* Copy your WAD files into `wads`.
+* Build the container (`docker build -t localhost/zandronum:multiplay -f Dockerfile.multiplay.novnc .`).
+* Authenticate, tag, and push to Multiplay in alignment with their [documentation](https://docs.unity.com/multiplay/guides/get-started.html#Upload2).
+
 # Configuration
 
 ## Controls
