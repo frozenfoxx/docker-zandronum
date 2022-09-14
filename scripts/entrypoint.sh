@@ -47,6 +47,7 @@ while [[ "$1" != "" ]]; do
                 PORT=$1
                 ;;
     * )         PARAMS="${PARAMS} $1"
+                ;;
   esac
   shift
 done
