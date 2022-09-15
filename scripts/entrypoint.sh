@@ -24,6 +24,15 @@ build_configs()
   envsubst < /usr/local/etc/supervisord.conf.tmpl > ${HOME}/supervisord.conf
 }
 
+## Configure ports
+config_ports()
+{
+  # For Multiplay you cannot presently specifc different ports, so increment to avoid collisions
+  if [[ ${NOVNCPORT} -eq ${RFBPORT} ]]; then
+    RFBPORT=$((${NOVNCPORT} + 1))
+  fi
+}
+
 ## Run supervisor
 launch_supervisor()
 {
@@ -60,6 +69,7 @@ while [[ "$1" != "" ]]; do
   shift
 done
 
+config_ports
 build_configs
 launch_supervisor
 launch_zandronum

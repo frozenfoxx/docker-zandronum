@@ -57,6 +57,7 @@ A [Multiplay](https://unity.com/products/multiplay) compatible version of this c
 * Copy your WAD files into `wads`.
 * Build the container (`docker build -t localhost/zandronum:multiplay -f Dockerfile.multiplay.novnc .`).
 * Authenticate, tag, and push to Multiplay in alignment with their [documentation](https://docs.unity.com/multiplay/guides/get-started.html#Upload2).
+* Under Build Configuration/Launch Parameters, input `--novncport $$port$$ --rfbport $$port$$`.
 
 # Configuration
 
