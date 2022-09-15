@@ -3,26 +3,31 @@
 # Variables
 DISPLAY_HEIGHT=${DISPLAY_HEIGHT:-'1280'}
 DISPLAY_WIDTH=${DISPLAY_WIDTH:-'720'}
+NOVNCPORT=${NOVNCPORT:-'8080'}
 PARAMS=''
-PORT=${PORT:-'8080'}
+RFBPORT=${RFBPORT:-'5900'}
 
 # Functions
 
 ## Build config files
 build_configs()
 {
+  # Create local Zandornum config directory
+  mkdir -p ${HOME}/.config/zandronum
+
   export DISPLAY_HEIGHT
   export DISPLAY_WIDTH
-  export PORT
+  export NOVNCPORT
+  export RFBPORT
 
-  envsubst < /root/.config/zandronum/zandronum.ini.tmpl > /root/.config/zandronum/zandronum.ini
-  envsubst < /etc/supervisor/conf.d/supervisord.conf.tmpl > /etc/supervisor/conf.d/supervisord.conf
+  envsubst < /usr/local/etc/zandronum.ini.tmpl > ${HOME}/.config/zandronum/zandronum.ini
+  envsubst < /usr/local/etc/supervisord.conf.tmpl > ${HOME}/supervisord.conf
 }
 
 ## Run supervisor
 launch_supervisor()
 {
-  /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf &
+  /usr/bin/supervisord -c ${HOME}/supervisord.conf &
 }
 
 ## Launch Zandronum
@@ -40,14 +45,17 @@ launch_zandronum()
 
 # Logic
 
-## Check if PORT is overridden with vncport
+## Check for overridden variables
 while [[ "$1" != "" ]]; do
   case $1 in
-    --vncport ) shift
-                PORT=$1
-                ;;
-    * )         PARAMS="${PARAMS} $1"
-                ;;
+    --novncport ) shift
+                  NOVNCPORT=$1
+                  ;;
+    --rfbport )   shift
+                  RFBPORT=$1
+                  ;;
+    * )           PARAMS="${PARAMS} $1"
+                  ;;
   esac
   shift
 done

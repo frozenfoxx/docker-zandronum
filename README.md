@@ -79,7 +79,9 @@ The default control scheme has been modified for easier use with noVNC. Since th
 
 * `DISPLAY_HEIGHT`: allows modification of the virtual display's height.
 * `DISPLAY_WIDTH`: allows modification of the virtual display's width.
-* `PORT`: allows modification of the listening port for noVNC.
+* `NOVNCPORT`: allows modification of the listening port for noVNC (default: 8080).
+* `RFBPORT`: remote framebuffer port (default: 5900).
 
 ## Parameters
-* `--vncport [port]`: port to listen on, overrides `PORT`. 
+* `--novncport [port]`: port to listen on for noVNC, overrides `NOVNCPORT`. 
+* `--rfbport [port]`: port to listen on for RFB, overrides `RFBPORT`.

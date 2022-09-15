@@ -10,13 +10,13 @@ stdout_logfile=/tmp/xvfb-zandronum.log
 redirect_stderr=true
 
 [program:x11vnc-zandronum]
-command=x11vnc -display :0 -rfbport 5900 -forever -shared
+command=x11vnc -display :0 -rfbport ${RFBPORT} -forever -shared
 priority=3
 stdout_logfile=/tmp/x11vnc-zandronum.log
 redirect_stderr=true
 
 [program:websockify_vnc]
-command=websockify --web /usr/share/novnc ${PORT} localhost:5900
+command=websockify --web /usr/share/novnc ${NOVNCPORT} localhost:${RFBPORT}
 priority=4
 stdout_logfile=/tmp/websockify-vnc.log
 redirect_stderr=true
