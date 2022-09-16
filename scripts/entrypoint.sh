@@ -6,9 +6,9 @@ DISPLAY_PORT=${DISPLAY_PORT:-'0'}
 DISPLAY_HEIGHT=${DISPLAY_HEIGHT:-'1280'}
 DISPLAY_WIDTH=${DISPLAY_WIDTH:-'720'}
 HOME=$(eval echo ~$(whoami))
-NOVNCPORT=${NOVNCPORT:-'8080'}
+NOVNC_PORT=${NOVNC_PORT:-'8080'}
 PARAMS=''
-RFBPORT=${RFBPORT:-'5900'}
+RFB_PORT=${RFB_PORT:-'5900'}
 
 # Functions
 
@@ -19,7 +19,6 @@ build_configs()
   mkdir -p ${HOME}/.config/zandronum
 
   export DISPLAY
-  export DISPLAY_PORT
   export DISPLAY_HEIGHT
   export DISPLAY_WIDTH
   export NOVNC_PORT
@@ -33,8 +32,8 @@ build_configs()
 config_ports()
 {
   # For Multiplay you cannot presently specifc different ports, so increment to avoid collisions
-  if [[ ${NOVNCPORT} -eq ${RFBPORT} ]]; then
-    RFBPORT=$((${NOVNCPORT} + 1))
+  if [[ ${NOVNC_PORT} -eq ${RFB_PORT} ]]; then
+    RFB_PORT=$((${NOVNC_PORT} + 1))
   fi
 
   # Configure the display for Zandronum

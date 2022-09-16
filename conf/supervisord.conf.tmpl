@@ -4,7 +4,7 @@ pidfile=/tmp/supervisord.pid
 logfile=/tmp/supervisord.log
 
 [program:Xvfb-zandronum]
-command=Xvfb ${DISPLAY} -screen ${DISPLAY_PORT} "${DISPLAY_WIDTH}"x"${DISPLAY_HEIGHT}"x24 -listen tcp -noreset
+command=Xvfb ${DISPLAY} -screen 0 "${DISPLAY_WIDTH}"x"${DISPLAY_HEIGHT}"x24 -listen tcp -noreset
 priority=2
 stdout_logfile=/tmp/xvfb-zandronum.log
 redirect_stderr=true
