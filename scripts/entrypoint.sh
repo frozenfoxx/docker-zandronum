@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 # Variables
-DISPLAY=${DISPLAY:-'0'}
+DISPLAY=''
+DISPLAY_PORT=${DISPLAY_PORT:-'0'}
 DISPLAY_HEIGHT=${DISPLAY_HEIGHT:-'1280'}
 DISPLAY_WIDTH=${DISPLAY_WIDTH:-'720'}
 HOME=$(eval echo ~$(whoami))
@@ -17,6 +18,7 @@ build_configs()
   # Create local Zandornum config directory
   mkdir -p ${HOME}/.config/zandronum
 
+  export DISPLAY
   export DISPLAY_PORT
   export DISPLAY_HEIGHT
   export DISPLAY_WIDTH
@@ -34,6 +36,9 @@ config_ports()
   if [[ ${NOVNCPORT} -eq ${RFBPORT} ]]; then
     RFBPORT=$((${NOVNCPORT} + 1))
   fi
+
+  # Configure the display for Zandronum
+  DISPLAY=":${DISPLAY_PORT}"
 }
 
 ## Run supervisor
