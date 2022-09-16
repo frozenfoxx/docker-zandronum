@@ -22,7 +22,7 @@ ENV HOME=/root \
     software-properties-common \
     wget" \
   DEBIAN_FRONTEND=noninteractive \
-  DISPLAY=:0.0 \
+  DISPLAY_PORT=0 \
   DISPLAY_WIDTH=1280 \
   DISPLAY_HEIGHT=720 \
   DOOMWADDIR='/wads' \
@@ -30,8 +30,8 @@ ENV HOME=/root \
   LANG=en_US.UTF-8 \
   LANGUAGE=en_US.UTF-8 \
   LC_ALL=C.UTF-8 \
-  NOVNCPORT=8080 \
-  RFBPORT=5900
+  NOVNC_PORT=8080 \
+  RFB_PORT=5900
 
 # Install packages
 USER root
@@ -54,7 +54,7 @@ RUN apt-get autoremove --purge -y ${BUILD_DEPS}
 RUN rm -rf /var/lib/apt/lists/*
   
 # Expose ports
-EXPOSE ${NOVNCPORT}
+EXPOSE ${NOVNC_PORT}
 
 # Launch processes
 USER mpukgame

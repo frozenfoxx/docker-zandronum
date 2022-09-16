@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Variables
+DISPLAY=${DISPLAY:-'0'}
 DISPLAY_HEIGHT=${DISPLAY_HEIGHT:-'1280'}
 DISPLAY_WIDTH=${DISPLAY_WIDTH:-'720'}
 HOME=$(eval echo ~$(whoami))
@@ -16,10 +17,11 @@ build_configs()
   # Create local Zandornum config directory
   mkdir -p ${HOME}/.config/zandronum
 
+  export DISPLAY_PORT
   export DISPLAY_HEIGHT
   export DISPLAY_WIDTH
-  export NOVNCPORT
-  export RFBPORT
+  export NOVNC_PORT
+  export RFB_PORT
 
   envsubst < /usr/local/etc/zandronum.ini.tmpl > ${HOME}/.config/zandronum/zandronum.ini
   envsubst < /usr/local/etc/supervisord.conf.tmpl > ${HOME}/supervisord.conf
@@ -58,14 +60,17 @@ launch_zandronum()
 ## Check for overridden variables
 while [[ "$1" != "" ]]; do
   case $1 in
-    --novncport ) shift
-                  NOVNCPORT=$1
-                  ;;
-    --rfbport )   shift
-                  RFBPORT=$1
-                  ;;
-    * )           PARAMS="${PARAMS} $1"
-                  ;;
+    --displayport ) shift
+                    DISPLAY_PORT=$1
+                    ;;
+    --novncport )   shift
+                    NOVNC_PORT=$1
+                    ;;
+    --rfbport )     shift
+                    RFB_PORT=$1
+                    ;;
+    * )             PARAMS="${PARAMS} $1"
+                    ;;
   esac
   shift
 done

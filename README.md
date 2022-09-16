@@ -57,7 +57,7 @@ A [Multiplay](https://unity.com/products/multiplay) compatible version of this c
 * Copy your WAD files into `wads`.
 * Build the container (`docker build -t localhost/zandronum:multiplay -f Dockerfile.multiplay.novnc .`).
 * Authenticate, tag, and push to Multiplay in alignment with their [documentation](https://docs.unity.com/multiplay/guides/get-started.html#Upload2).
-* Under Build Configuration/Launch Parameters, input `--novncport $$port$$ --rfbport $$port$$`.
+* Under Build Configuration/Launch Parameters, input `--displayport $$port$$ --novncport $$port$$ --rfbport $$port$$`.
 
 # Configuration
 
@@ -78,11 +78,14 @@ The default control scheme has been modified for easier use with noVNC. Since th
 
 ## Environment Variables
 
-* `DISPLAY_HEIGHT`: allows modification of the virtual display's height.
-* `DISPLAY_WIDTH`: allows modification of the virtual display's width.
-* `NOVNCPORT`: allows modification of the listening port for noVNC (default: 8080).
-* `RFBPORT`: remote framebuffer port (default: 5900).
+* `DISPLAY_PORT`: allows modification of the virtual display's port (default: 0).
+* `DISPLAY_HEIGHT`: allows modification of the virtual display's height (default: 720).
+* `DISPLAY_WIDTH`: allows modification of the virtual display's width (default: 1280).
+* `NOVNC_PORT`: allows modification of the listening port for noVNC (default: 8080).
+* `RFB_PORT`: remote framebuffer port (default: 5900).
 
 ## Parameters
-* `--novncport [port]`: port to listen on for noVNC, overrides `NOVNCPORT`. 
-* `--rfbport [port]`: port to listen on for RFB, overrides `RFBPORT`.
+
+* `--displayport [port]`: port to listen on for display, overrides `DISPLAY_PORT`. 
+* `--novncport [port]`: port to listen on for noVNC, overrides `NOVNC_PORT`. 
+* `--rfbport [port]`: port to listen on for RFB, overrides `RFB_PORT`.
