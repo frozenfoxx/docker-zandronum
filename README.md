@@ -1,6 +1,6 @@
 # docker-zandronum
 
-[![Actions Status](https://github.com/frozenfoxx/docker-zandronum/workflows/build/badge.svg)](https://github.com/frozenfoxx/docker-zandronum/actions)
+[![Build](https://github.com/frozenfoxx/docker-zandronum/actions/workflows/build.yml/badge.svg)](https://github.com/frozenfoxx/docker-zandronum/actions/workflows/build.yml)
 
 A [Docker](https://www.docker.com/) container that runs [Zandronum](https://zandronum.com/).
 
